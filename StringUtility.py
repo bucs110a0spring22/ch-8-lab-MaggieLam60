@@ -81,15 +81,22 @@ class StringUtility:
     return sum
     
   def cipher(self):
-   length = len(self.string)
-   new_string = ''
-   for char in self.string:
-     if char.isalpha():
-       new_string += chr(ord(char)+length)
-     else:
-       new_string += char
-   return new_string
-   '''
+    length = len(self.string)
+    newString = ''
+    for x in self.string:
+        if(x.isalpha()):
+            if( (ord(x) >= 97 and ord(x) <= 122) and (ord(x)+length > 122)  ):
+                newString += chr( 96 + ((ord(x)+length)%122) )
+            elif ( (ord(x) >= 65 and ord(x) <= 90) and (ord(x)+length > 90)  ):
+                newString += chr( 64 + ((ord(x)+length)%90) )
+            else:
+                newString += chr((ord(x)+length)) 
+        else:
+            newString += x;
+    return newString
+    
+    
+  '''
   general function description= changes the letter in alphebetical order by the number of total 
 	args: (type) description= self
 	return: (type) description = returns new string made
